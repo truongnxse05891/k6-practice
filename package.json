@@ -1,0 +1,17 @@
+{
+  "name": "k6-performance-practice",
+  "version": "1.0.0",
+  "private": true,
+  "description": "K6 performance testing practice project with smoke, load, stress, spike, soak, and data-driven examples.",
+  "scripts": {
+    "smoke": "k6 run scripts/smoke-test.js",
+    "load": "k6 run scripts/load-test.js",
+    "stress": "k6 run scripts/stress-test.js",
+    "spike": "k6 run scripts/spike-test.js",
+    "soak": "k6 run scripts/soak-test.js",
+    "data": "k6 run scripts/data-driven-test.js",
+    "checkout:load": "k6 run scripts/checkout-load-test.js",
+    "smoke:summary": "k6 run --summary-export results/smoke-summary.json scripts/smoke-test.js",
+    "load:summary": "k6 run --summary-export results/load-summary.json scripts/load-test.js"
+  }
+}

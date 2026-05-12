@@ -1,0 +1,12 @@
+services:
+  k6:
+    image: grafana/k6:latest
+    working_dir: /scripts
+    volumes:
+      - ./:/scripts
+    environment:
+      BASE_URL: ${BASE_URL:-https://test.k6.io}
+      THINK_TIME_SECONDS: ${THINK_TIME_SECONDS:-1}
+      REQUEST_TIMEOUT: ${REQUEST_TIMEOUT:-30s}
+    command: run scripts/smoke-test.js
+
