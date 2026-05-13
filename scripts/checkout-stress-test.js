@@ -1,12 +1,12 @@
 import http from 'k6/http';
 import { check, group, sleep } from 'k6';
 import { Counter, Trend } from 'k6/metrics';
-import { loadThresholds } from '../lib/thresholds.js';
+import { stressThresholds } from '../lib/thresholds.js';
 
 const checkoutUrl = __ENV.CHECKOUT_URL;
 
 if (!checkoutUrl) {
-  throw new Error('Missing CHECKOUT_URL. Example: k6 run -e CHECKOUT_URL=https://example.com/checkouts/id scripts/checkout-load-test.js');
+  throw new Error('Missing CHECKOUT_URL. Example: k6 run -e CHECKOUT_URL=https://example.com/checkouts/id scripts/checkout-stress-test.js');
 }
 
 const checkoutStatus2xx = new Counter('checkout_status_2xx');
@@ -18,22 +18,21 @@ const checkoutDuration = new Trend('checkout_duration');
 
 export const options = {
   stages: [
-    { duration: '30s', target: 3 },
-    { duration: '1m', target: 5 },
     { duration: '30s', target: 10 },
-    { duration: '1m', target: 10 },
+    { duration: '1m', target: 20 },
+    { duration: '1m', target: 50 },
     { duration: '30s', target: 0 },
   ],
-  thresholds: loadThresholds,
+  thresholds: stressThresholds,
 };
 
 export default function () {
-  group('Checkout page availability under load', () => {
+  group('Checkout page stress test', () => {
     const response = http.get(checkoutUrl, {
       timeout: __ENV.REQUEST_TIMEOUT || '30s',
       tags: {
         page: 'checkout',
-        flow: 'checkout_load',
+        flow: 'checkout_stress',
       },
     });
 
@@ -42,7 +41,7 @@ export default function () {
 
     check(response, {
       'checkout returns HTTP 200': (res) => res.status === 200,
-      'checkout response time < 1200ms': (res) => res.timings.duration < 1200,
+      'checkout response time < 2500ms': (res) => res.timings.duration < 2500,
       'checkout body is not empty': (res) => Boolean(res.body && res.body.length > 0),
     });
 
