@@ -12,6 +12,8 @@
     "data": "k6 run scripts/data-driven-test.js",
     "checkout:load": "k6 run scripts/checkout-load-test.js",
     "checkout:stress": "k6 run scripts/checkout-stress-test.js",
+    "checkout:diagnostic": "k6 run scripts/checkout-diagnostic-test.js",
+    "checkout:rate": "k6 run scripts/checkout-rate-test.js",
     "smoke:summary": "k6 run --summary-export results/smoke-summary.json scripts/smoke-test.js",
     "load:summary": "k6 run --summary-export results/load-summary.json scripts/load-test.js"
   }

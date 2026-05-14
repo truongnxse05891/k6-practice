@@ -118,3 +118,7 @@ Threshold đang được định nghĩa tại `lib/thresholds.js`. Khi threshold
 4. Thêm endpoint mới vào `load-test.js` và đặt tag theo page hoặc API name.
 5. Điều chỉnh threshold trong `lib/thresholds.js` theo SLA thực tế.
 6. Xuất JSON result vào `results/` và phân tích lỗi request.
+
+## Bài tập theo ngày
+
+- [Day 02 - K6 Performance Practice](exercises/day-02-2026-05-14.md)
