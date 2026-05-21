@@ -14,6 +14,9 @@
     "checkout:stress": "k6 run scripts/checkout-stress-test.js",
     "checkout:diagnostic": "k6 run scripts/checkout-diagnostic-test.js",
     "checkout:rate": "k6 run scripts/checkout-rate-test.js",
+    "checkout:baseline": "k6 run scripts/checkout-baseline-test.js",
+    "checkout:setup": "k6 run scripts/checkout-setup-example.js",
+    "checkout:summary": "k6 run scripts/checkout-summary-test.js",
     "smoke:summary": "k6 run --summary-export results/smoke-summary.json scripts/smoke-test.js",
     "load:summary": "k6 run --summary-export results/load-summary.json scripts/load-test.js"
   }

@@ -122,3 +122,4 @@ Threshold đang được định nghĩa tại `lib/thresholds.js`. Khi threshold
 ## Bài tập theo ngày
 
 - [Day 02 - K6 Performance Practice](exercises/day-02-2026-05-14.md)
+- [Day 03 - K6 Performance Practice](exercises/day-03-2026-05-21.md)
