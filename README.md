@@ -123,3 +123,17 @@ Threshold đang được định nghĩa tại `lib/thresholds.js`. Khi threshold
 
 - [Day 02 - K6 Performance Practice](exercises/day-02-2026-05-14.md)
 - [Day 03 - K6 Performance Practice](exercises/day-03-2026-05-21.md)
+- [Day 04 - K6 Performance Practice](exercises/day-04-2026-05-24.md)
+
+## Ghi chú kết quả thực hành
+
+### Day 04 - Capacity probe checkout endpoint
+
+- Endpoint test: `https://plb-hyperswitch-dev.myshopbase.net/checkouts/e443ab0bdf4d4c2a8a284393340500c8`.
+- Script chính: `scripts/checkout-step-rate-test.js`.
+- Kết quả hiện tại: `5 RPS` pass với 274/274 request 2xx, p95 117.22 ms, không có `429` hoặc `5xx`.
+- `10 RPS` fail do rate limit: 428/550 request trả `429`, không có `5xx`.
+- Step-rate `1 -> 5 -> 10 -> 20 RPS` fail do `429` chiếm 17.02%.
+- Safe operating rate tạm thời: `5 RPS` cho checkout URL dùng chung hiện tại.
+- Không nên chỉ nhìn p95: ở rate cao, nhiều response `429` trả về nhanh nên latency có thể thấp nhưng user flow vẫn fail.
+- Báo cáo chi tiết: `results/day-04-capacity-report.md`.
