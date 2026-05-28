@@ -124,6 +124,7 @@ Threshold đang được định nghĩa tại `lib/thresholds.js`. Khi threshold
 - [Day 02 - K6 Performance Practice](exercises/day-02-2026-05-14.md)
 - [Day 03 - K6 Performance Practice](exercises/day-03-2026-05-21.md)
 - [Day 04 - K6 Performance Practice](exercises/day-04-2026-05-24.md)
+- [Day 05 - K6 Performance Practice](exercises/day-05-2026-05-28.md)
 
 ## Ghi chú kết quả thực hành
 
@@ -137,3 +138,11 @@ Threshold đang được định nghĩa tại `lib/thresholds.js`. Khi threshold
 - Safe operating rate tạm thời: `5 RPS` cho checkout URL dùng chung hiện tại.
 - Không nên chỉ nhìn p95: ở rate cao, nhiều response `429` trả về nhanh nên latency có thể thấp nhưng user flow vẫn fail.
 - Báo cáo chi tiết: `results/day-04-capacity-report.md`.
+
+### Day 05 - K6 quality gate từ JSON summary
+
+- Script chính: `scripts/analyze-k6-summary.js`.
+- Step-rate summary fail regression gate: success rate `82.98%`, `429` rate `17.02%`, exit code `1` khi `FAIL_ON_GATE=true`.
+- Rate `5 RPS` pass regression gate: success rate `100%`, `429` rate `0%`, p95 `117.22 ms`.
+- Kết luận: dùng `5 RPS` làm regression gate hằng ngày; step-rate nên là capacity discovery job riêng và không nên block CI mặc định.
+- Giải thích chi tiết: `results/day-05-quality-gate-notes.md`.
